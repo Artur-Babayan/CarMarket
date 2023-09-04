@@ -6,7 +6,7 @@
 
 Установка
 Склонируйте репозиторий с помощью следующей команды:
-git clone https://github.com/yourusername/CarMarket.git
+git clone https://github.com/Artur-Babayan/CarMarket.git
 
 Перейдите в каталог CarMarket:
 python3 main.py
