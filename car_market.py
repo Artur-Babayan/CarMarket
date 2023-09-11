@@ -83,14 +83,12 @@ class CarMarket:
     def return_car(self):
         print("Return Car:")
 
-        # Display available buyer names
         print("Available Buyers:")
         for buyer in self.buyers:
             print(buyer.first_name + " " + buyer.last_name)
 
         buyer_name = input("Enter the buyer's name: ")
 
-        # Find the buyer by name
         selected_buyer = None
         for buyer in self.buyers:
             if buyer.first_name + " " + buyer.last_name == buyer_name:
@@ -98,14 +96,12 @@ class CarMarket:
                 break
 
         if selected_buyer:
-            # Display available car models for the selected buyer
             print(f"Available Car Models for {buyer_name}:")
             for car in selected_buyer.bought_cars:
                 print(car.model)
 
             car_model = input("Enter the car's model: ")
 
-            # Find the car by model for the selected buyer
             selected_car = None
             for car in selected_buyer.bought_cars:
                 if car.model == car_model:
@@ -113,16 +109,11 @@ class CarMarket:
                     break
 
             if selected_car:
-                # Check if the car has already been returned
                 if not selected_car.returned:
                     selected_car.returned = True
                     return_info = input("Enter return information: ")
                     selected_car.return_info = return_info
-
-                    # Remove the car from the buyer's list of owned cars
                     selected_buyer.bought_cars.remove(selected_car)
-
-                    # Update seller and transaction details
                     selected_car.seller.return_car(selected_car, selected_buyer)
 
                     print(f"Car '{car_model}' returned successfully.")
@@ -142,7 +133,6 @@ class CarMarket:
 
         json_data = json.dumps(market_data, indent=4, cls=CarMarketEncoder)
 
-        # Save the JSON data to a file
         with open("market_data.json", "a") as file:
             file.write(json_data)
 
@@ -188,7 +178,7 @@ class CarMarket:
                 else:
                     self.print_sold_cars_by_sellers()
             elif choice == "8":
-                self.manage_cars_submenu()  # Enter the sub-menu for car management
+                self.manage_cars_submenu()
             elif choice == "9":
                 break
             else:
